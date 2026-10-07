@@ -145,8 +145,11 @@ jobs:
           printf '%s\n' "$SERVER_SSH_KEY" > ~/.ssh/income_deploy
           chmod 600 ~/.ssh/income_deploy
           printf '%s\n' "$SERVER_HOST_KEY" > ~/.ssh/known_hosts
-          ssh -i ~/.ssh/income_deploy "$SERVER_USER@$SERVER_HOST" 'mkdir -p ~/income-api/src'
+          ssh -i ~/.ssh/income_deploy "$SERVER_USER@$SERVER_HOST" 'mkdir -p ~/income-api/src ~/income-api/scripts'
           scp -i ~/.ssh/income_deploy src/serve.py src/cloud.py src/__init__.py "$SERVER_USER@$SERVER_HOST:income-api/src/"
+          scp -i ~/.ssh/income_deploy requirements.txt "$SERVER_USER@$SERVER_HOST:income-api/"
+          scp -i ~/.ssh/income_deploy scripts/setup_vm.sh "$SERVER_USER@$SERVER_HOST:income-api/scripts/"
+          ssh -i ~/.ssh/income_deploy "$SERVER_USER@$SERVER_HOST" "if ! systemctl cat income-api >/dev/null 2>&1; then ARTIFACT_BUCKET='$ARTIFACT_BUCKET' CLOUD_PROVIDER='$CLOUD_PROVIDER' AWS_DEFAULT_REGION='$AWS_DEFAULT_REGION' bash ~/income-api/scripts/setup_vm.sh; fi"
           ssh -i ~/.ssh/income_deploy "$SERVER_USER@$SERVER_HOST" 'sudo systemctl restart income-api; for i in $(seq 1 20); do if curl -fsS http://localhost:8080/healthz; then exit 0; fi; sleep 2; done; exit 1'
       - name: Restore cloud artifacts if deployment fails
         if: failure() && steps.promote.outputs.deploy == 'true'
