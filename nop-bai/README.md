@@ -3,6 +3,21 @@
 Thư mục này là nơi chứa **bằng chứng nộp bài**. Bạn không cần tạo thêm thư mục nào khác:
 điền vào các file có sẵn và bỏ ảnh chụp màn hình vào đúng tên file đã quy định.
 
+## Trạng thái thực hiện 07/10/2026
+
+- Đã hoàn thiện mã huấn luyện, API, workflow 4 jobs và phần triển khai cho 5 bonus.
+- 22 kiểm thử đã qua; kết quả XML và số liệu thực nghiệm thật nằm trong [ket-qua/](ket-qua/).
+- 3 thí nghiệm MLflow và lần huấn luyện với 44.722 mẫu đã chạy cục bộ; tham số tốt nhất
+  là 100 cây, learning_rate 0,1, max_depth 3, ngưỡng 0,30, F1 0,7407.
+- API cục bộ đã kiểm tra `/healthz` và `/score`. Đây chưa phải bằng chứng trên VM.
+- Ảnh `01-mlflow-ui.png` chụp UI thật, đủ cột và sắp xếp F1 giảm dần. Ảnh headless
+  chưa có thanh địa chỉ; cần chụp lại cửa sổ trình duyệt để đúng toàn bộ quy ước ảnh.
+- DVC đã theo dõi đủ ba CSV; cloud remote và `dvc push` lên cloud chưa thực hiện.
+- Khóa AWS hiện có không hợp lệ, repo chưa có Actions secrets. Chưa xác nhận Actions,
+  triển khai VM, DagsHub hoặc nộp VLearn; còn thiếu ảnh 02–05.
+
+Các bước kết nối tài khoản và chạy tiếp: [huong-dan-chay.md](huong-dan-chay.md).
+
 ```
 nop-bai/
 ├── README.md                  <- file này (checklist)

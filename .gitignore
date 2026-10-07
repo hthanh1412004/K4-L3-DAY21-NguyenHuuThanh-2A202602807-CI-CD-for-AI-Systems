@@ -11,3 +11,9 @@ sa-key.json
 __pycache__/
 *.pyc
 .DS_Store
+.pytest_cache/
+mlruns/
+*.pem
+.env.*
+!.env.example
+data/raw/

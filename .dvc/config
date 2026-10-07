@@ -1,0 +1,4 @@
+[core]
+    remote = labstore
+['remote "labstore"']
+    url = s3://income-lab-405134482332-20261007/dvc

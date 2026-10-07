@@ -1,0 +1,14 @@
+{
+  "train_batch1": {
+    "rows": 22361,
+    "sha256": "a66c5663e8f93ab084e25ae943a94f07f42451fe540a4f8a0e4e11b213b2ba4a"
+  },
+  "holdout": {
+    "rows": 500,
+    "sha256": "c972e9a3fd36f168e5d3565ae579df5c1017b512e5006391f167dc6df5e0a52b"
+  },
+  "train_batch2": {
+    "rows": 22361,
+    "sha256": "a1b58245a26e66b5678421b6d029224da37cc3db698dc2e1efc8755583a26449"
+  }
+}

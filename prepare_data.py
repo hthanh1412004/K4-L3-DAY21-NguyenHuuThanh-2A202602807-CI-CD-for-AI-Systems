@@ -1,5 +1,6 @@
 import pandas as pd
 import os
+from pathlib import Path
 
 TRAIN_URL = "https://archive.ics.uci.edu/ml/machine-learning-databases/adult/adult.data"
 TEST_URL  = "https://archive.ics.uci.edu/ml/machine-learning-databases/adult/adult.test"
@@ -32,8 +33,10 @@ def load(url: str, skiprows: int) -> pd.DataFrame:
     )
 
 
-df_train = load(TRAIN_URL, skiprows=0)
-df_test  = load(TEST_URL,  skiprows=1)   # dong dau cua adult.test la dong chu thich
+# Use cached originals when present so lab runs do not depend on repeated downloads.
+raw_dir = Path("data/raw")
+df_train = load(raw_dir / "adult.data" if (raw_dir / "adult.data").exists() else TRAIN_URL, skiprows=0)
+df_test  = load(raw_dir / "adult.test" if (raw_dir / "adult.test").exists() else TEST_URL, skiprows=1)
 
 # Nhan trong adult.test co dau cham o cuoi ("<=50K."), can cat bo cho khop voi adult.data
 df_test["income"] = df_test["income"].str.rstrip(".")
@@ -42,6 +45,8 @@ df = pd.concat([df_train, df_test], ignore_index=True)
 
 # Loai bo cac dong thieu gia tri (duoc danh dau bang "?" trong file goc)
 df = df.dropna().reset_index(drop=True)
+if len(df) != 45222:
+    raise ValueError(f"Expected 45222 clean Adult rows, got {len(df)}; check cached raw downloads")
 
 # Ma hoa cac cot phan loai thanh so nguyen theo thu tu bang chu cai
 for col in CATEGORICAL_COLUMNS:

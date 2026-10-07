@@ -1,4 +1,24 @@
-# Báo Cáo Lab Day 21 - CI/CD cho AI Systems
+"""Fill the submission template from actual local experiment reports."""
+import json
+from pathlib import Path
+
+
+def main():
+    root = Path("nop-bai/ket-qua")
+    runs = json.loads((root / "experiments.json").read_text())
+    step2 = json.loads((root / "buoc-2-report.json").read_text())
+    step3 = json.loads((root / "buoc-3-report.json").read_text())
+    p = step2["params"]
+    table = "\n".join(
+        f"| {i} | {r['params']['n_estimators']} | {r['params']['learning_rate']} | {r['params']['max_depth']} | {r['f1_score']:.4f} | {r['accuracy']:.4f} |"
+        for i, r in enumerate(runs, 1))
+    change = step3["f1_score"] - step2["f1_score"]
+    direction = "tăng" if change >= 0 else "giảm"
+    same_best = max(runs, key=lambda r: r["accuracy"])["params"] == p
+    accuracy_note = ("Ba cấu hình cùng accuracy, nên accuracy không phân biệt được chất lượng."
+                     if len({r["accuracy"] for r in runs}) == 1 else
+                     f"Lần accuracy cao nhất {'trùng' if same_best else 'không trùng'} với lần F1 tốt nhất.")
+    report = f"""# Báo Cáo Lab Day 21 - CI/CD cho AI Systems
 
 | | |
 |---|---|
@@ -12,14 +32,12 @@
 
 | Lần chạy | n_estimators | learning_rate | max_depth | f1_score | accuracy |
 |---|---|---|---|---|---|
-| 1 | 100 | 0.1 | 3 | 0.7407 | 0.8600 |
-| 2 | 50 | 0.05 | 2 | 0.7083 | 0.8600 |
-| 3 | 200 | 0.1 | 5 | 0.7368 | 0.8600 |
+{table}
 
-**Đã chọn:** `n_estimators=100`, `learning_rate=0.1`, `max_depth=3`.
-Bộ này đạt F1 cao nhất. Ba cấu hình cùng accuracy, nên accuracy không phân biệt được chất lượng.
+**Đã chọn:** `n_estimators={p['n_estimators']}`, `learning_rate={p['learning_rate']}`, `max_depth={p['max_depth']}`.
+Bộ này đạt F1 cao nhất. {accuracy_note}
 Giảm learning_rate cần nhiều cây hơn; cấu hình 50 cây, depth 2, rate 0,05 học yếu hơn.
-Ngưỡng chọn là 0.30, nâng F1 từ 0.7109 tại 0,5 lên 0.7407.
+Ngưỡng chọn là {step2['best_threshold']:.2f}, nâng F1 từ {step2['f1_default']:.4f} tại 0,5 lên {step2['f1_score']:.4f}.
 Holdout không tham gia fit nhưng dùng chọn tham số/ngưỡng; cần test set độc lập khi đánh giá sản phẩm.
 
 ## 2. Vì Sao Ngưỡng Chất Lượng Đặt Trên F1 Chứ Không Phải Accuracy
@@ -45,10 +63,10 @@ Confusion matrix và số đo từng lớp nằm trong detail.txt.
 
 | | f1_score | accuracy |
 |---|---|---|
-| Bước 2 (22.361 mẫu) | 0.7407 | 0.8600 |
-| Bước 3 (44.722 mẫu) | 0.7345 | 0.8800 |
+| Bước 2 (22.361 mẫu) | {step2['f1_score']:.4f} | {step2['accuracy']:.4f} |
+| Bước 3 (44.722 mẫu) | {step3['f1_score']:.4f} | {step3['accuracy']:.4f} |
 
-F1 giảm 0.0062; dữ liệu mới cùng nguồn nên thêm mẫu không bảo đảm cải thiện.
+F1 {direction} {abs(change):.4f}; dữ liệu mới cùng nguồn nên thêm mẫu không bảo đảm cải thiện.
 Bonus 4 giữ model cũ khi F1 giảm; chu trình commit tới VM còn cần xác nhận trên cloud.
 
 ## 5. Phần Bonus Đã Thực Hiện
@@ -58,3 +76,10 @@ Bonus 4 giữ model cũ khi F1 giảm; chu trình commit tới VM còn cần xá
 - [x] Bonus 3: Có confusion matrix, precision/recall và upload artifact trong workflow.
 - [x] Bonus 4: Kiểm thử chặn F1 giảm và rollback artifact; chưa kiểm chứng cloud thật.
 - [x] Bonus 5: Kiểm tra tỷ lệ lớp trước fit, cảnh báo lệch quá 5 điểm phần trăm.
+"""
+    Path("nop-bai/bao-cao.md").write_text(report, encoding="utf-8")
+    print("Report written; words:", len(report.split()))
+
+
+if __name__ == "__main__":
+    main()

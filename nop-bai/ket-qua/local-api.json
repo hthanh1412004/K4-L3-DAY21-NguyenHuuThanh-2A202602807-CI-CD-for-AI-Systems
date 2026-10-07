@@ -1,0 +1,25 @@
+{
+  "endpoint": "http://127.0.0.1:8080",
+  "healthz": {
+    "status": "ok"
+  },
+  "payload": {
+    "features": [
+      28,
+      2,
+      14,
+      2,
+      11,
+      0,
+      1,
+      0,
+      0,
+      45
+    ]
+  },
+  "score": {
+    "prediction": 1,
+    "label": "thu_nhap_cao"
+  },
+  "note": "Local smoke test, not cloud VM evidence"
+}
