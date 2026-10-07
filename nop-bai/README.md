@@ -5,7 +5,7 @@ Thư mục này là nơi chứa **bằng chứng nộp bài**. Bạn không cầ
 
 ## Trạng thái thực hiện 07/10/2026
 
-- Đã hoàn thiện mã huấn luyện, API, workflow 4 jobs và bonus 2–5.
+- Đã hoàn thiện mã huấn luyện, API, workflow 4 jobs và bonus 1–5.
 - 22 kiểm thử đã qua; kết quả XML và số liệu thực nghiệm thật nằm trong [ket-qua/](ket-qua/).
 - 3 thí nghiệm MLflow và lần huấn luyện với 44.722 mẫu đã chạy cục bộ; tham số tốt nhất
   là 100 cây, learning_rate 0,1, max_depth 3, ngưỡng 0,30, F1 0,7407.
@@ -17,8 +17,10 @@ Thư mục này là nơi chứa **bằng chứng nộp bài**. Bạn không cầ
 - F1 bước 3 là 0,7345 < 0,7407; bonus 4 giữ model bước 2, có log và report S3 xác nhận.
 - [Lần thử gate](https://github.com/hthanh1412004/K4-L3-DAY21-NguyenHuuThanh-2A202602807-CI-CD-for-AI-Systems/actions/runs/37609536074)
   trên nhánh riêng đạt F1 0,3974: gate thất bại, Release skipped đúng thiết kế.
-- Ảnh 01–04 và 07 là cửa sổ thật; ảnh trình duyệt có thanh địa chỉ.
-- Người học chọn tự bổ sung ảnh S3 số 05. Bonus 1 chờ tài khoản/token DagsHub.
+- Đã kiểm tra ảnh 01–07; ảnh S3 gồm `05a-storage-dvc.png` và `05b-storage-model.png`.
+- [Pipeline bonus 1](https://github.com/hthanh1412004/K4-L3-DAY21-NguyenHuuThanh-2A202602807-CI-CD-for-AI-Systems/actions/runs/37638208781)
+  qua cả bốn jobs. Run DagsHub `fffe5f3425174cf48867fc4be3539671` có F1 0,7345,
+  accuracy 0,88; ảnh `06-dagshub-mlflow.png` xác nhận trạng thái Finished và metric.
 - Báo cáo dùng artifact CI thật. Chưa nộp URL lên VLearn.
 
 Các bước kết nối tài khoản và chạy tiếp: [huong-dan-chay.md](huong-dan-chay.md).
@@ -33,7 +35,10 @@ nop-bai/
     ├── 02-actions-buoc-2.png
     ├── 03-actions-buoc-3.png
     ├── 04-curl-api.png
-    └── 05-cloud-storage.png
+    ├── 05a-storage-dvc.png
+    ├── 05b-storage-model.png
+    ├── 06-dagshub-mlflow.png
+    └── 07-quality-gate-chan.png
 ```
 
 ---
@@ -43,10 +48,10 @@ nop-bai/
 Đánh dấu `[x]` khi hoàn thành từng mục:
 
 - [x] Repo GitHub ở chế độ **public** và chứa toàn bộ code, cấu hình đã hoàn thiện.
-- [ ] Đủ 5 ảnh trong `anh-chup-man-hinh/`, đúng tên file, đúng thứ tự (xem
+- [x] Đủ ảnh bắt buộc 01–05 và ảnh bonus 06–07, đúng tên file, đúng thứ tự (xem
       [yêu cầu chi tiết](anh-chup-man-hinh/README.md)).
 - [ ] `bao-cao.md` đã điền đủ 3 mục bắt buộc và không vượt quá 1 trang A4.
-- [x] Đã `git push` phần code, báo cáo và minh chứng hiện có lên GitHub; ảnh S3 còn cần bổ sung.
+- [x] Đã `git push` phần code, báo cáo và minh chứng lên GitHub.
 - [ ] Dán URL repo GitHub vào bài nộp trên **https://vlearn.dev**.
 - [ ] Mở lại URL vừa nộp ở chế độ ẩn danh để chắc chắn repo public và người chấm xem được.
 
@@ -60,7 +65,8 @@ nop-bai/
 | `02-actions-buoc-2.png` | Bước 2 - CI/CD (bốn jobs màu xanh) | 16 |
 | `03-actions-buoc-3.png` | Bước 3 - Tự động hóa | 12 |
 | `04-curl-api.png` | Bước 2 - Serving | 12 |
-| `05-cloud-storage.png` | Bước 2 - DVC | 12 |
+| `05a-storage-dvc.png`, `05b-storage-model.png` | Bước 2 - DVC và model S3 | 12 |
+| `06-dagshub-mlflow.png` | Bonus 1 - MLflow remote | Bonus |
 
 Phần `bao-cao.md` chứng minh hạng mục **Bước 1 - Phân tích** (4 điểm) và là nơi bạn giải
 trình khi một ảnh nào đó chưa thể hiện đủ (ví dụ quality gate đã chặn đúng một lần).

@@ -1,0 +1,90 @@
+{
+  "f1_score": 0.7345132743362832,
+  "accuracy": 0.88,
+  "f1_default": 0.7014218009478673,
+  "accuracy_default": 0.874,
+  "best_f1_score": 0.7345132743362832,
+  "best_threshold": 0.45,
+  "positive_class_ratio": 0.24784222530298286,
+  "data_drift_warning": false,
+  "train_rows": 44722,
+  "eval_rows": 500,
+  "params": {
+    "n_estimators": 100,
+    "learning_rate": 0.1,
+    "max_depth": 3
+  },
+  "threshold_sweep": [
+    {
+      "threshold": 0.1,
+      "f1_score": 0.6346666666666667
+    },
+    {
+      "threshold": 0.15,
+      "f1_score": 0.6930091185410334
+    },
+    {
+      "threshold": 0.2,
+      "f1_score": 0.6945337620578779
+    },
+    {
+      "threshold": 0.25,
+      "f1_score": 0.7247386759581882
+    },
+    {
+      "threshold": 0.3,
+      "f1_score": 0.7333333333333333
+    },
+    {
+      "threshold": 0.35,
+      "f1_score": 0.7250996015936255
+    },
+    {
+      "threshold": 0.4,
+      "f1_score": 0.725
+    },
+    {
+      "threshold": 0.45,
+      "f1_score": 0.7345132743362832
+    },
+    {
+      "threshold": 0.5,
+      "f1_score": 0.7014218009478673
+    },
+    {
+      "threshold": 0.55,
+      "f1_score": 0.6865671641791045
+    },
+    {
+      "threshold": 0.6,
+      "f1_score": 0.6767676767676768
+    },
+    {
+      "threshold": 0.65,
+      "f1_score": 0.6387434554973822
+    },
+    {
+      "threshold": 0.7,
+      "f1_score": 0.5777777777777777
+    },
+    {
+      "threshold": 0.75,
+      "f1_score": 0.49411764705882355
+    },
+    {
+      "threshold": 0.8,
+      "f1_score": 0.4727272727272727
+    },
+    {
+      "threshold": 0.85,
+      "f1_score": 0.4177215189873418
+    },
+    {
+      "threshold": 0.9,
+      "f1_score": 0.3974358974358974
+    }
+  ],
+  "run_id": "fffe5f3425174cf48867fc4be3539671",
+  "git_sha": "d07fdf5903de65092c53ada4aeca2903f400c8bb",
+  "evaluation_note": "Threshold selected on holdout per lab; metrics are selection estimates, not an untouched test score."
+}

@@ -8,6 +8,12 @@ def main():
     runs = json.loads((root / "experiments.json").read_text())
     step2 = json.loads((root / "buoc-2-report.json").read_text())
     step3 = json.loads((root / "buoc-3-report.json").read_text())
+    remote_evidence = root / "buoc-dagshub-actions.json"
+    remote_ok = (remote_evidence.exists()
+                 and json.loads(remote_evidence.read_text())["conclusion"] == "success"
+                 and Path("nop-bai/anh-chup-man-hinh/06-dagshub-mlflow.png").exists())
+    bonus1 = ("- [x] Bonus 1: CI ghi run lên DagsHub; ảnh 06 đối chiếu run ID, F1 0,7345 và accuracy 0,88."
+              if remote_ok else "- [ ] Bonus 1: Cần xác minh run CI trên DagsHub và bổ sung ảnh 06.")
     p = step2["params"]
     table = "\n".join(
         f"| {i} | {r['params']['n_estimators']} | {r['params']['learning_rate']} | {r['params']['max_depth']} | {r['f1_score']:.4f} | {r['accuracy']:.4f} |"
@@ -72,7 +78,7 @@ Model yếu trên nhánh riêng đạt F1 0,3974: Quality Gate thất bại, Rel
 
 ## 5. Phần Bonus Đã Thực Hiện
 
-- [ ] Bonus 1: Có cấu hình DagsHub; cần token để xác minh remote run.
+{bonus1}
 - [x] Bonus 2: Quét 17 ngưỡng, log MLflow và lưu ngưỡng trong model/API.
 - [x] Bonus 3: Có confusion matrix, precision/recall và upload artifact trong workflow.
 - [x] Bonus 4: Đã chặn F1 giảm trên cloud và kiểm thử rollback artifact.

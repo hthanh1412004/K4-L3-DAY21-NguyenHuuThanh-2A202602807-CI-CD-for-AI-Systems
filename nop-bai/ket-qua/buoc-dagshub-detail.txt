@@ -1,0 +1,12 @@
+Confusion matrix (rows=true, columns=predicted; labels=0,1):
+[[357  19]
+ [ 41  83]]
+
+               precision    recall  f1-score   support
+
+thu_nhap_thap       0.90      0.95      0.92       376
+ thu_nhap_cao       0.81      0.67      0.73       124
+
+     accuracy                           0.88       500
+    macro avg       0.86      0.81      0.83       500
+ weighted avg       0.88      0.88      0.88       500

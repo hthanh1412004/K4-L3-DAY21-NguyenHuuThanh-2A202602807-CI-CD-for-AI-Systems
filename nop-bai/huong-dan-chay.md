@@ -5,6 +5,9 @@
 - Hai pipeline bước 2 và 3 đều qua bốn jobs; xem `ket-qua/buoc-*-actions.json`.
 - API: `http://13.220.141.198:8080/docs`; healthz/score đã trả HTTP 200.
 - S3: `income-lab-405134482332-20261007`, region `us-east-1`.
+- Bonus 1 đã xác minh qua CI run `37638208781`; DagsHub run
+  `fffe5f3425174cf48867fc4be3539671` Finished, F1 0,7345, accuracy 0,88.
+  Số liệu lưu trong `ket-qua/buoc-dagshub-report.json`; ảnh 06 là giao diện remote thật.
 - Dữ liệu hiện tại có 44.722 mẫu; không chạy lại `prepare_data.py` hoặc bộ thí nghiệm
   batch 1 trên dữ liệu này. Muốn tái hiện bước 1, checkout con trỏ ở commit `99dcf8f`
   trong clone riêng rồi `dvc pull`.
@@ -94,16 +97,9 @@ nếu SSH hoặc health check thất bại, workflow phục hồi artifact rồi
 model cũ. Lần chạy bị chặn do F1 giảm sẽ giữ model cũ, dù đã đạt ngưỡng 0,65.
 Đây là hành vi Bonus 4; không được báo là model mới đã được triển khai.
 
-## Hai mục còn cần người học
+## Nộp bài
 
-1. Bổ sung ảnh S3 Console: [mở bucket](https://s3.console.aws.amazon.com/s3/buckets/income-lab-405134482332-20261007?region=us-east-1&tab=objects).
-   Chụp `dvc/` và `artifacts/current/model.joblib` gồm tên bucket, thanh địa chỉ.
-   Có thể lưu hai ảnh `05a-storage-dvc.png`, `05b-storage-model.png` theo quy ước.
-2. Bonus DagsHub: đăng nhập bằng GitHub, kết nối repo lab, tạo token tại Settings → Tokens.
-   Sửa `.env`: `MLFLOW_TRACKING_URI=https://dagshub.com/OWNER/REPO.mlflow`,
-   `MLFLOW_TRACKING_USERNAME=OWNER`, `MLFLOW_TRACKING_PASSWORD=TOKEN`.
-   Không đưa `.env` vào Git. Lưu ba giá trị này trong GitHub Actions Secrets rồi chạy
-   workflow từ nhánh main để xác minh run xuất hiện trên DagsHub; chụp ảnh 06.
-
-Sau khi bổ sung minh chứng, commit/push thư mục `nop-bai/`.
-Nộp URL repo public lên `https://vlearn.dev` bằng tài khoản học viên.
+Ảnh S3 05a/05b và DagsHub 06 đã được bổ sung. Ba secrets MLflow được cấu hình
+trong GitHub Actions; `.env` cục bộ vẫn dùng MLflow SQLite.
+Nộp URL repo public lên `https://vlearn.dev` bằng tài khoản học viên, rồi mở lại
+URL đã nộp ở chế độ ẩn danh để kiểm tra người chấm truy cập được.

@@ -54,7 +54,7 @@ Model yếu trên nhánh riêng đạt F1 0,3974: Quality Gate thất bại, Rel
 
 ## 5. Phần Bonus Đã Thực Hiện
 
-- [ ] Bonus 1: Có cấu hình DagsHub; cần token để xác minh remote run.
+- [x] Bonus 1: CI ghi run lên DagsHub; ảnh 06 đối chiếu run ID, F1 0,7345 và accuracy 0,88.
 - [x] Bonus 2: Quét 17 ngưỡng, log MLflow và lưu ngưỡng trong model/API.
 - [x] Bonus 3: Có confusion matrix, precision/recall và upload artifact trong workflow.
 - [x] Bonus 4: Đã chặn F1 giảm trên cloud và kiểm thử rollback artifact.

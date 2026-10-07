@@ -1,0 +1,40 @@
+{
+  "id": 37638208781,
+  "html_url": "https://github.com/hthanh1412004/K4-L3-DAY21-NguyenHuuThanh-2A202602807-CI-CD-for-AI-Systems/actions/runs/37638208781",
+  "head_sha": "d07fdf5903de65092c53ada4aeca2903f400c8bb",
+  "display_title": "Income Model CI/CD",
+  "event": "workflow_dispatch",
+  "status": "completed",
+  "conclusion": "success",
+  "created_at": "2026-10-07T14:37:07Z",
+  "jobs": [
+    {
+      "id": 112849913185,
+      "name": "Unit Test",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/hthanh1412004/K4-L3-DAY21-NguyenHuuThanh-2A202602807-CI-CD-for-AI-Systems/actions/runs/37638208781/job/112849913185"
+    },
+    {
+      "id": 112850436190,
+      "name": "Train",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/hthanh1412004/K4-L3-DAY21-NguyenHuuThanh-2A202602807-CI-CD-for-AI-Systems/actions/runs/37638208781/job/112850436190"
+    },
+    {
+      "id": 112850969424,
+      "name": "Quality Gate",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/hthanh1412004/K4-L3-DAY21-NguyenHuuThanh-2A202602807-CI-CD-for-AI-Systems/actions/runs/37638208781/job/112850969424"
+    },
+    {
+      "id": 112851036607,
+      "name": "Release",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/hthanh1412004/K4-L3-DAY21-NguyenHuuThanh-2A202602807-CI-CD-for-AI-Systems/actions/runs/37638208781/job/112851036607"
+    }
+  ]
+}
