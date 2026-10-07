@@ -18,7 +18,6 @@
 
 **Đã chọn:** `n_estimators=100`, `learning_rate=0.1`, `max_depth=3`.
 Bộ này đạt F1 cao nhất. Ba cấu hình cùng accuracy, nên accuracy không phân biệt được chất lượng.
-Giảm learning_rate cần nhiều cây hơn; cấu hình 50 cây, depth 2, rate 0,05 học yếu hơn.
 Ngưỡng chọn là 0.30, nâng F1 từ 0.7109 tại 0,5 lên 0.7407.
 Holdout không tham gia fit nhưng dùng chọn tham số/ngưỡng; cần test set độc lập khi đánh giá sản phẩm.
 
@@ -26,7 +25,7 @@ Holdout không tham gia fit nhưng dùng chọn tham số/ngưỡng; cần test 
 
 Chỉ 24,8% dữ liệu có thu nhập cao. Luôn đoán thu nhập thấp vẫn đạt accuracy 75,2%
 nhưng F1 lớp dương bằng 0. F1 cân bằng precision và recall của lớp thu nhập cao;
-quality gate dùng F1 ≥ 0,65. Weighted/macro F1 tính gộp hai lớp.
+quality gate dùng F1 ≥ 0,65.
 Giả định dùng mô hình chọn khách hàng cho ưu đãi cao cấp, gán nhầm người thu nhập thấp
 tăng chi phí tiếp thị nên precision thấp tốn kém hơn; mục đích khác có thể ưu tiên recall.
 Confusion matrix và số đo từng lớp nằm trong detail.txt.
@@ -36,12 +35,11 @@ Confusion matrix và số đo từng lớp nằm trong detail.txt.
 | Khó khăn | Nguyên nhân | Cách giải quyết |
 |---|---|---|
 | Python/SQLAlchemy quá mới | MLflow 2.13 thiếu API tương thích. | Dùng Python 3.11, SQLAlchemy 2.0, NumPy 1.26.4. |
-| Tải CSV chậm | Kết nối gián đoạn. | Dùng ZIP UCI, xác nhận 45.222 mẫu. |
-| Cloud chưa chạy | Khóa AWS sai; thiếu secrets. | Chuẩn bị script DVC/VM; cần thông tin cloud hợp lệ. |
+| Release ban đầu lỗi | EC2 thiếu service. | Bootstrap systemd trong workflow; chạy lại thành công. |
 
 ## 4. So Sánh Bước 2 và Bước 3
 
-**Số liệu thực chạy cục bộ; chưa phải kết quả GitHub Actions/VM.**
+**Số liệu từ artifact GitHub Actions thật; cả bốn jobs đều xanh.**
 
 | | f1_score | accuracy |
 |---|---|---|
@@ -49,12 +47,15 @@ Confusion matrix và số đo từng lớp nằm trong detail.txt.
 | Bước 3 (44.722 mẫu) | 0.7345 | 0.8800 |
 
 F1 giảm 0.0062; dữ liệu mới cùng nguồn nên thêm mẫu không bảo đảm cải thiện.
-Bonus 4 giữ model cũ khi F1 giảm; chu trình commit tới VM còn cần xác nhận trên cloud.
+Bonus 4 giữ model cũ trên S3 khi F1 giảm; log xác nhận chặn triển khai bước 3.
+DVC push hoàn tất trước commit dữ liệu; commit tự kích hoạt pipeline.
+API tại `13.220.141.198:8080` trả HTTP 200 cho healthz/score.
+Model yếu trên nhánh riêng đạt F1 0,3974: Quality Gate thất bại, Release bị bỏ qua.
 
 ## 5. Phần Bonus Đã Thực Hiện
 
 - [ ] Bonus 1: Có cấu hình DagsHub; cần token để xác minh remote run.
 - [x] Bonus 2: Quét 17 ngưỡng, log MLflow và lưu ngưỡng trong model/API.
 - [x] Bonus 3: Có confusion matrix, precision/recall và upload artifact trong workflow.
-- [x] Bonus 4: Kiểm thử chặn F1 giảm và rollback artifact; chưa kiểm chứng cloud thật.
+- [x] Bonus 4: Đã chặn F1 giảm trên cloud và kiểm thử rollback artifact.
 - [x] Bonus 5: Kiểm tra tỷ lệ lớp trước fit, cảnh báo lệch quá 5 điểm phần trăm.

@@ -1,0 +1,40 @@
+{
+  "id": 37609415881,
+  "html_url": "https://github.com/hthanh1412004/K4-L3-DAY21-NguyenHuuThanh-2A202602807-CI-CD-for-AI-Systems/actions/runs/37609415881",
+  "head_sha": "c10597c19c7f974f781c96879b8a58bde2bf3b02",
+  "display_title": "data: bo sung 22361 mau du lieu moi (train_batch2)",
+  "event": "push",
+  "status": "completed",
+  "conclusion": "success",
+  "created_at": "2026-10-07T10:44:41Z",
+  "jobs": [
+    {
+      "id": 112752747614,
+      "name": "Unit Test",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/hthanh1412004/K4-L3-DAY21-NguyenHuuThanh-2A202602807-CI-CD-for-AI-Systems/actions/runs/37609415881/job/112752747614"
+    },
+    {
+      "id": 112753076018,
+      "name": "Train",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/hthanh1412004/K4-L3-DAY21-NguyenHuuThanh-2A202602807-CI-CD-for-AI-Systems/actions/runs/37609415881/job/112753076018"
+    },
+    {
+      "id": 112753474661,
+      "name": "Quality Gate",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/hthanh1412004/K4-L3-DAY21-NguyenHuuThanh-2A202602807-CI-CD-for-AI-Systems/actions/runs/37609415881/job/112753474661"
+    },
+    {
+      "id": 112753512812,
+      "name": "Release",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/hthanh1412004/K4-L3-DAY21-NguyenHuuThanh-2A202602807-CI-CD-for-AI-Systems/actions/runs/37609415881/job/112753512812"
+    }
+  ]
+}

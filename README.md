@@ -3,7 +3,7 @@
 Course: AIInAction - VinUni
 
 > Bản triển khai lab: xem [hướng dẫn chạy và cấu hình cloud](nop-bai/huong-dan-chay.md),
-> [báo cáo thực nghiệm](nop-bai/bao-cao.md) và [kết quả cục bộ](nop-bai/ket-qua/).
+> [báo cáo thực nghiệm](nop-bai/bao-cao.md) và [kết quả CI/cloud thực tế](nop-bai/ket-qua/).
 Buổi: Day 21 - CI/CD cho AI Systems
 Khoá: K4
 

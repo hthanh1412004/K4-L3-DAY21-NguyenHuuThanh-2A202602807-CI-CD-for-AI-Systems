@@ -1,0 +1,40 @@
+{
+  "id": 37608754832,
+  "html_url": "https://github.com/hthanh1412004/K4-L3-DAY21-NguyenHuuThanh-2A202602807-CI-CD-for-AI-Systems/actions/runs/37608754832",
+  "head_sha": "99dcf8f1a127ed8c689a541d59e55d6900cb40fa",
+  "display_title": "fix: bootstrap EC2 API service during first CI deployment",
+  "event": "push",
+  "status": "completed",
+  "conclusion": "success",
+  "created_at": "2026-10-07T10:38:37Z",
+  "jobs": [
+    {
+      "id": 112750587568,
+      "name": "Unit Test",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/hthanh1412004/K4-L3-DAY21-NguyenHuuThanh-2A202602807-CI-CD-for-AI-Systems/actions/runs/37608754832/job/112750587568"
+    },
+    {
+      "id": 112750898034,
+      "name": "Train",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/hthanh1412004/K4-L3-DAY21-NguyenHuuThanh-2A202602807-CI-CD-for-AI-Systems/actions/runs/37608754832/job/112750898034"
+    },
+    {
+      "id": 112751352940,
+      "name": "Quality Gate",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/hthanh1412004/K4-L3-DAY21-NguyenHuuThanh-2A202602807-CI-CD-for-AI-Systems/actions/runs/37608754832/job/112751352940"
+    },
+    {
+      "id": 112751387240,
+      "name": "Release",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/hthanh1412004/K4-L3-DAY21-NguyenHuuThanh-2A202602807-CI-CD-for-AI-Systems/actions/runs/37608754832/job/112751387240"
+    }
+  ]
+}

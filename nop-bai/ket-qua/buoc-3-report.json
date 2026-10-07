@@ -84,7 +84,7 @@
       "f1_score": 0.3974358974358974
     }
   ],
-  "run_id": "62899dffd0e543d2b75a9f9a437718e7",
-  "git_sha": null,
+  "run_id": "8501de099254428992ff4c0411491f07",
+  "git_sha": "c10597c19c7f974f781c96879b8a58bde2bf3b02",
   "evaluation_note": "Threshold selected on holdout per lab; metrics are selection estimates, not an untouched test score."
 }

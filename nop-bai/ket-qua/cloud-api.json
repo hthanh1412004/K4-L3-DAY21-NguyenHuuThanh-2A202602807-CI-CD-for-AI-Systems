@@ -1,0 +1,28 @@
+{
+  "base_url": "http://13.220.141.198:8080",
+  "healthz": {
+    "status": "ok"
+  },
+  "score_payload": {
+    "features": [
+      28,
+      2,
+      14,
+      2,
+      11,
+      0,
+      1,
+      0,
+      0,
+      45
+    ]
+  },
+  "score_response": {
+    "prediction": 1,
+    "label": "thu_nhap_cao"
+  },
+  "status_codes": [
+    200,
+    200
+  ]
+}

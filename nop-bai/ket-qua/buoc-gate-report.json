@@ -1,0 +1,90 @@
+{
+  "f1_score": 0.3974358974358974,
+  "accuracy": 0.248,
+  "f1_default": 0.0,
+  "accuracy_default": 0.752,
+  "best_f1_score": 0.3974358974358974,
+  "best_threshold": 0.2,
+  "positive_class_ratio": 0.24784222530298286,
+  "data_drift_warning": false,
+  "train_rows": 44722,
+  "eval_rows": 500,
+  "params": {
+    "n_estimators": 1,
+    "learning_rate": 0.01,
+    "max_depth": 1
+  },
+  "threshold_sweep": [
+    {
+      "threshold": 0.1,
+      "f1_score": 0.3974358974358974
+    },
+    {
+      "threshold": 0.15,
+      "f1_score": 0.3974358974358974
+    },
+    {
+      "threshold": 0.2,
+      "f1_score": 0.3974358974358974
+    },
+    {
+      "threshold": 0.25,
+      "f1_score": 0.0
+    },
+    {
+      "threshold": 0.3,
+      "f1_score": 0.0
+    },
+    {
+      "threshold": 0.35,
+      "f1_score": 0.0
+    },
+    {
+      "threshold": 0.4,
+      "f1_score": 0.0
+    },
+    {
+      "threshold": 0.45,
+      "f1_score": 0.0
+    },
+    {
+      "threshold": 0.5,
+      "f1_score": 0.0
+    },
+    {
+      "threshold": 0.55,
+      "f1_score": 0.0
+    },
+    {
+      "threshold": 0.6,
+      "f1_score": 0.0
+    },
+    {
+      "threshold": 0.65,
+      "f1_score": 0.0
+    },
+    {
+      "threshold": 0.7,
+      "f1_score": 0.0
+    },
+    {
+      "threshold": 0.75,
+      "f1_score": 0.0
+    },
+    {
+      "threshold": 0.8,
+      "f1_score": 0.0
+    },
+    {
+      "threshold": 0.85,
+      "f1_score": 0.0
+    },
+    {
+      "threshold": 0.9,
+      "f1_score": 0.0
+    }
+  ],
+  "run_id": "602407e9ce84455dad848057b59377ad",
+  "git_sha": "6bc26b610f8bcfcf014795614397dfb3ee2e4531",
+  "evaluation_note": "Threshold selected on holdout per lab; metrics are selection estimates, not an untouched test score."
+}

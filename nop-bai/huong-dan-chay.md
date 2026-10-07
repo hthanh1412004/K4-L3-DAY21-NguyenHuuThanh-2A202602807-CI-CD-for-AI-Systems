@@ -1,5 +1,15 @@
 # Chạy bản lab đã hoàn thiện
 
+## Kết quả đã xác minh
+
+- Hai pipeline bước 2 và 3 đều qua bốn jobs; xem `ket-qua/buoc-*-actions.json`.
+- API: `http://13.220.141.198:8080/docs`; healthz/score đã trả HTTP 200.
+- S3: `income-lab-405134482332-20261007`, region `us-east-1`.
+- Dữ liệu hiện tại có 44.722 mẫu; không chạy lại `prepare_data.py` hoặc bộ thí nghiệm
+  batch 1 trên dữ liệu này. Muốn tái hiện bước 1, checkout con trỏ ở commit `99dcf8f`
+  trong clone riêng rồi `dvc pull`.
+- Model production vẫn là bước 2 do F1 model bước 3 giảm. Đây là bonus 4 hoạt động đúng.
+
 ## Phần cục bộ
 
 Trong PowerShell ở thư mục repo:
@@ -27,13 +37,11 @@ Invoke-RestMethod -Method Post -Uri http://localhost:8080/score -ContentType app
 
 Mở `http://localhost:5000`, chọn experiment `adult-income`, hiện các cột F1,
 accuracy, n_estimators, learning_rate, max_depth và chụp ảnh số 01.
-`ket-qua/` chứa kết quả thực nghiệm thật; Bước 2/3 tại đây là chạy cục bộ,
-không chứng minh GitHub Actions hoặc VM đã chạy.
+`ket-qua/` chứa kết quả thí nghiệm cục bộ và artifact thực của hai pipeline cloud.
 
 ## Kết nối cloud và chạy GitHub Actions
 
-1. Dùng bucket và VM thật, xác thực cloud trên máy. Với AWS, khóa hiện có cần được
-   thay mới vì STS trả về `InvalidClientTokenId`.
+1. Khi dựng lại lab, dùng bucket và VM thật, xác thực cloud trên máy.
 2. Chạy `./scripts/configure_dvc.ps1 -Provider aws -Bucket TEN_BUCKET_THAT`
    (hoặc `-Provider gcp -Bucket TEN_BUCKET_THAT -CredentialPath DUONG_DAN_KEY`).
    Script cấu hình remote thực, tạo con trỏ và `dvc push`.
@@ -61,8 +69,9 @@ không chứng minh GitHub Actions hoặc VM đã chạy.
 | MLFLOW_TRACKING_USERNAME | Tài khoản DagsHub |
 | MLFLOW_TRACKING_PASSWORD | Token DagsHub |
 
-6. Với AWS, thêm repository variable `CLOUD_PROVIDER=aws` và `AWS_REGION` đúng
-   region. GCP là mặc định. Khi chưa có DagsHub, MLflow dùng SQLite trên runner.
+6. Với AWS, thêm repository variable `CLOUD_PROVIDER=aws`, `AWS_REGION=us-east-1`,
+   `SERVER_SECURITY_GROUP` là ID security group EC2. CI cần quyền mở/đóng ingress
+   trong đúng group để cho phép IP runner tạm thời. Khi chưa có DagsHub, MLflow dùng SQLite.
 7. Commit code, `.dvc/config`, ba con trỏ `data/*.dvc`, báo cáo và bằng chứng;
    kiểm tra `dvc push` thành công trước `git push`. Chụp lần chạy Bước 2 (ảnh 02),
    kết quả curl tới VM (ảnh 04) và cloud storage (ảnh 05).
@@ -85,8 +94,16 @@ nếu SSH hoặc health check thất bại, workflow phục hồi artifact rồi
 model cũ. Lần chạy bị chặn do F1 giảm sẽ giữ model cũ, dù đã đạt ngưỡng 0,65.
 Đây là hành vi Bonus 4; không được báo là model mới đã được triển khai.
 
-## Hồ sơ nộp bài còn cần tài khoản thật
+## Hai mục còn cần người học
 
-5 ảnh theo yêu cầu, DagsHub remote runs,
-hai lần chạy Actions và endpoint trên VM cần được xác nhận trước khi nộp.
+1. Bổ sung ảnh S3 Console: [mở bucket](https://s3.console.aws.amazon.com/s3/buckets/income-lab-405134482332-20261007?region=us-east-1&tab=objects).
+   Chụp `dvc/` và `artifacts/current/model.joblib` gồm tên bucket, thanh địa chỉ.
+   Có thể lưu hai ảnh `05a-storage-dvc.png`, `05b-storage-model.png` theo quy ước.
+2. Bonus DagsHub: đăng nhập bằng GitHub, kết nối repo lab, tạo token tại Settings → Tokens.
+   Sửa `.env`: `MLFLOW_TRACKING_URI=https://dagshub.com/OWNER/REPO.mlflow`,
+   `MLFLOW_TRACKING_USERNAME=OWNER`, `MLFLOW_TRACKING_PASSWORD=TOKEN`.
+   Không đưa `.env` vào Git. Lưu ba giá trị này trong GitHub Actions Secrets rồi chạy
+   workflow từ nhánh main để xác minh run xuất hiện trên DagsHub; chụp ảnh 06.
+
+Sau khi bổ sung minh chứng, commit/push thư mục `nop-bai/`.
 Nộp URL repo public lên `https://vlearn.dev` bằng tài khoản học viên.
